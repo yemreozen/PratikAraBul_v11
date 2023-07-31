@@ -1,0 +1,46 @@
+﻿@model EntityLayer.Concrete.Blog
+@{
+    ViewData["Title"] = "BlogAdd";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+<h1>Yeni Blog Ekleme</h1>
+
+@using (Html.BeginForm("BlogAdd","Blog",FormMethod.Post))
+{
+    @Html.Label("Blog Başlığı")
+    @Html.TextBoxFor(x=>x.BlogTitle,new {@class="form-control",required = "required" })
+    <br/>
+    @Html.Label("Blog Mini Resim")
+    @Html.TextBoxFor(x=>x.ThumbnailImage,new {@class="form-control",required = "required" })
+    <br />
+     @Html.Label("Blog Ana Resim")
+    @Html.TextBoxFor(x=>x.Image,new {@class="form-control",required = "required" })
+    <br/>
+    @Html.Label("Blog Kategorisi")
+    @Html.DropDownListFor(x=>x.CategoryID,(List<SelectListItem>)ViewBag.cv,new {@class="form-control",required = "required" })
+    <br />
+    @Html.Label("Blog İçeriği")
+    <span id="error-message" style="color: red; display: none;">Minimum 300 karakter olmalıdır.</span>
+    @Html.TextAreaFor(x=>x.BlogContent,new {@class="form-control",id = "BlogContent" })
+    <br />
+    <button id="submitButton" disabled type="submit" class="btn btn-info">Ekle</button>
+}
+
+<script>
+    document.getElementById("BlogContent").addEventListener("input", function () {
+        var textarea = document.getElementById("BlogContent");
+        var minLength = 300;
+        var currentValue = textarea.value;
+
+        if (currentValue.length < minLength) {
+            document.getElementById("error-message").style.display = "block";
+            document.getElementById("submitButton").disabled = true;
+
+        } else {
+            document.getElementById("error-message").style.display = "none";
+            document.getElementById("submitButton").disabled = false;
+
+        }
+    });
+</script>

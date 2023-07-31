@@ -144,15 +144,15 @@ button{
         <div class="shape"></div>
         <div class="shape"></div>
     </div>
-    <form>
+    <form method="post">
         <h3>Giriş Yap</h3>
 
         <label for="username">Kullanıcı Adı</label>
-        <input type="text" placeholder="Kullanıcı adı giriniz" id="username">
+        <input type="text" class="form-control" name="WriterMail"  placeholder="Kullanıcı adı giriniz" id="username">
 
         <label for="password">Şifre</label>
-        <input type="password" placeholder="Şifre" id="password">
-
+        <input type="password" class="form-control" name="WriterPassword"  placeholder="Şifre" id="password">
+        @Html.ValidationMessage("Error", null, new { @class = "text text-danger" })
         <button>Giriş</button>
       
     </form>

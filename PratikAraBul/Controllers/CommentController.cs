@@ -1,13 +1,15 @@
 ﻿using BussinesLayer.Concrete;
 using DataAccesLayer.EntityFramework;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace PratikAraBul.Controllers
 {
+    [AllowAnonymous]
     public class CommentController : Controller
     {
         CommentManager cm = new CommentManager(new EfCommentRepository());
-
+     
         public IActionResult Index()
         {
             return View();
