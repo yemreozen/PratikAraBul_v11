@@ -1,0 +1,15 @@
+﻿@model IEnumerable<EntityLayer.Concrete.Category>
+<div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+    <div class="widget">
+        <h2 class="widget-title">Populer Kategoriler</h2>
+        <div class="link-widget">
+            <ul>
+                @foreach (var item in Model)
+                {
+                    <li><a href="#">@item.CategoryName <span>0</span></a></li>
+
+                }
+            </ul>
+        </div><!-- end link-widget -->
+    </div><!-- end widget -->
+</div><!-- end col -->

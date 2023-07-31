@@ -1,0 +1,19 @@
+﻿@using EntityLayer.Concrete
+@model List<Category>
+<div class="container">
+    <div class="mega-menu-content clearfix">
+       
+            <div class="tab">
+            @foreach (var item in Model)
+            {
+                 var categoryUrl = "/Category/" + item.CategoryID; // Uygun URL yapısını oluşturun
+
+                <a href="@categoryUrl">
+                <button class="tablinks active" onclick="openCategory(event, @item.CategoryID)">@item.CategoryName</button>
+                </a>
+            }
+            </div>
+
+            @await Component.InvokeAsync("MenuCategoryByBlog")
+        </div><!-- end tab-details -->
+</div><!-- end mega-menu-content -->

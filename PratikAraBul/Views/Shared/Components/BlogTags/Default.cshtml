@@ -1,0 +1,15 @@
+﻿@using EntityLayer.Concrete
+@model List<BlogTags>
+
+
+<div class="tag-cloud-single">
+    <span>Tags</span>
+    @foreach (var item in Model)
+    {
+
+        <small><a href="#" title="">@item.TagName</a></small>
+        <!-- end meta -->
+    }
+</div>
+
+

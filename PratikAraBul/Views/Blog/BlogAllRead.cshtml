@@ -1,0 +1,218 @@
+﻿@model IEnumerable<EntityLayer.Concrete.Blog>
+
+
+@{
+    ViewData["Title"] = "BlogDetails";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+@{
+    string categoryName = @ViewBag.CategoryName;
+    int categoryID = ViewBag.CategoryID;
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<!-- Basic -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<!-- Mobile Metas -->
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Site Metas -->
+<title>Pratik Arabul - Blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<!-- Site Icons -->
+<link rel="shortcut icon" href="~/tech-blog/images/favicon.ico" type="image/x-icon" />
+<link rel="apple-touch-icon" href="~/tech-blog/images/apple-touch-icon.png">
+
+<!-- Design fonts -->
+<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+
+<!-- Bootstrap core CSS -->
+<link href="~/tech-blog/css/bootstrap.css" rel="stylesheet">
+
+<!-- FontAwesome Icons core CSS -->
+<link href="~/tech-blog/css/font-awesome.min.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="~/tech-blog/style.css" rel="stylesheet">
+
+<!-- Responsive styles for this template -->
+<link href="~/tech-blog/css/responsive.css" rel="stylesheet">
+
+<!-- Colors for this template -->
+<link href="~/tech-blog/css/colors.css" rel="stylesheet">
+
+<!-- Version Tech CSS for this template -->
+<link href="~/tech-blog/css/version/tech.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+
+    <div id="wrapper">
+
+        <section class="section single-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                        <div class="page-wrapper">
+                            @foreach(var item in Model){
+                            <div class="blog-title-area text-center">
+                                <ol class="breadcrumb hidden-xs-down">
+                                    <li class="breadcrumb-item"><a href="/Blog/Index">Ana Sayfa</a></li>
+                                    <li class="breadcrumb-item"><a href="#">Blog</a></li>
+                                    <li class="breadcrumb-item active">@item.BlogTitle</li>
+                                </ol>
+
+                                    <span class="color-orange"><a href="/category/@categoryID/@Url.FriendlyUrl(categoryName)" title="">@ViewBag.CategoryName</a></span>
+                              
+                                <h3>@item.BlogTitle</h3>
+
+                                <div class="blog-meta big-meta">
+                                    <small><a href="tech-single.html" title="">@(((DateTime)item.BlogCreateDate).ToString("dd-MMM-yyyy"))</a></small>
+                                </div><!-- end meta -->
+
+                                <div class="post-sharing">
+                                    <ul class="list-inline">
+                                        <li><a href="#" class="fb-button btn btn-primary"><i class="fa fa-facebook"></i> <span class="down-mobile"> Facebook</span></a></li>
+                                        <li><a href="#" class="tw-button btn btn-primary"><i class="fa fa-twitter"></i> <span class="down-mobile"> Twitter</span></a></li>
+                                        <li><a href="#" class="gp-button btn btn-primary"><i class="fa fa-google-plus"></i></a></li>
+                                    </ul>
+                                </div><!-- end post-sharing -->
+                            </div><!-- end title -->
+                           
+                            <div class="single-post-media">
+                                <img src="@item.ThumbnailImage" alt="" class="img-fluid">
+                            </div><!-- end media -->
+                            <div class="blog-content">
+                                <div class="pp">
+                                   <p>@item.BlogContent</p>
+                                </div><!-- end pp -->
+                            </div><!-- end content -->
+                            }
+
+                            <div class="blog-title-area">
+                                @await Component.InvokeAsync("BlogTags",new {id=ViewBag.Id})
+
+                                <div class="post-sharing">
+                                    <ul class="list-inline">
+                                        <li><a href="#" class="fb-button btn btn-primary"><i class="fa fa-facebook"></i> <span class="down-mobile"> Facebook</span></a></li>
+                                        <li><a href="#" class="tw-button btn btn-primary"><i class="fa fa-twitter"></i> <span class="down-mobile">Twitter</span></a></li>
+                                        <li><a href="#" class="gp-button btn btn-primary"><i class="fa fa-google-plus"></i></a></li>
+                                    </ul>
+                                </div><!-- end post-sharing -->
+                            </div><!-- end title -->
+
+                            <hr class="invis1">
+@*
+                            <div class="custombox authorbox clearfix">
+                                <h4 class="small-title">About author</h4>
+                                <div class="row">
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                                        <img src="upload/author.jpg" alt="" class="img-fluid rounded-circle">
+                                    </div><!-- end col -->
+
+                                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+                                        <h4><a href="#">Jessica</a></h4>
+                                        <p>Quisque sed tristique felis. Lorem <a href="#">visit my website</a> amet, consectetur adipiscing elit. Phasellus quis mi auctor, tincidunt nisl eget, finibus odio. Duis tempus elit quis risus congue feugiat. Thanks for stop Tech Blog!</p>
+
+                                        <div class="topsocial">
+                                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i class="fa fa-facebook"></i></a>
+                                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Youtube"><i class="fa fa-youtube"></i></a>
+                                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Pinterest"><i class="fa fa-pinterest"></i></a>
+                                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Twitter"><i class="fa fa-twitter"></i></a>
+                                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Instagram"><i class="fa fa-instagram"></i></a>
+                                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Website"><i class="fa fa-link"></i></a>
+                                        </div><!-- end social -->
+
+                                    </div><!-- end col -->
+                                </div><!-- end row -->
+                            </div><!-- end author-box -->*@
+
+                            <hr class="invis1">
+
+                            <div class="custombox clearfix">
+                                <h4 class="small-title">Senin İçin Önerilenler</h4>
+                                @await Component.InvokeAsync("BlogAllReadRecommended")
+                            </div><!-- end custom-box -->
+
+                            <hr class="invis1">
+                                
+                            @await Component.InvokeAsync("CommentListByBlog",new {id=ViewBag.Id})
+
+                            <hr class="invis1">
+                              
+                            @await Html.PartialAsync("~/Views/Comment/PartialAddComment.cshtml")
+                        </div><!-- end page-wrapper -->
+                    </div><!-- end col -->
+
+                    <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                        <div class="sidebar">
+                           @* <div class="widget">
+                                <div class="banner-spot clearfix">
+                                    <div class="banner-img">
+                                        <img src="upload/banner_07.jpg" alt="" class="img-fluid">
+                                    </div><!-- end banner-img -->
+                                </div><!-- end banner -->
+                            </div><!-- end widget -->*@
+
+                            @await Component.InvokeAsync("BlogReadAllPopularContent")
+
+                       
+
+                            <div class="widget">
+                                <h2 class="widget-title">Follow Us</h2>
+
+                                <div class="row text-center">
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                        <a href="#" class="social-button facebook-button">
+                                            <i class="fa fa-facebook"></i>
+                                        </a>
+                                    </div>
+
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                        <a href="#" class="social-button twitter-button">
+                                            <i class="fa fa-twitter"></i>
+                                        </a>
+                                    </div>
+
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                        <a href="#" class="social-button google-button">
+                                            <i class="fa fa-google-plus"></i>
+                                        </a>
+                                    </div>
+
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                        <a href="#" class="social-button youtube-button">
+                                            <i class="fa fa-youtube"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div><!-- end widget -->
+                        </div><!-- end sidebar -->
+                    </div><!-- end col -->
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </section>
+
+
+    </div><!-- end wrapper -->
+    <!-- Core JavaScript
+    ================================================== -->
+    <script src="~/tech-blog/js/jquery.min.js"></script>
+    <script src="~/tech-blog/js/tether.min.js"></script>
+    <script src="~/tech-blog/js/bootstrap.min.js"></script>
+    <script src="~/tech-blog/js/custom.js"></script>
+
+</body>
+</html>
+

@@ -1,0 +1,51 @@
+﻿@using EntityLayer.Concrete
+@model List<Blog>
+
+@{
+    var firstItem = Model.FirstOrDefault();
+}
+<section class="section first-section">
+    <div class="container-fluid">
+        <div class="masonry-blog clearfix">
+            @if (firstItem != null)
+            {
+                <div class="first-slot">
+                    <div class="masonry-box post-media">
+                        <img src="@firstItem.ThumbnailImage" alt="" class="img-fluid">
+                        <div class="shadoweffect">
+                            <div class="shadow-desc">
+                                <div class="blog-meta">
+                                    <span class="bg-orange"><a href="/category/@firstItem.CategoryID/@Url.FriendlyUrl(@firstItem.Category.CategoryName)" title="">@firstItem.Category.CategoryName</a></span>
+                                    <h4><a href="/blog/blogallread/@firstItem.BlogID/@Url.FriendlyUrl(firstItem.BlogTitle)" title="">@firstItem.BlogTitle</a></h4>
+                                    <small><a href="/blog/blogallread/@firstItem.BlogID/@Url.FriendlyUrl(firstItem.BlogTitle)" title="">@(((DateTime)firstItem.BlogCreateDate).ToString("dd-MMM-yyyy"))</a></small>
+                                </div><!-- end meta -->
+                            </div><!-- end shadow-desc -->
+                        </div><!-- end shadow -->
+                    </div><!-- end post-media -->
+                </div>
+
+                <!-- end first-side -->
+            }
+
+            @foreach (var item in Model.Skip(1)) // İlk elemanı zaten kullandığımız için diğerlerine geçiyoruz.
+            {
+                <div class="second-slot">
+                    <div class="masonry-box post-media">
+                        <img src="@item.ThumbnailImage" alt="" class="img-fluid">
+                        <div class="shadoweffect">
+                            <div class="shadow-desc">
+                                <div class="blog-meta">
+                                    <span class="bg-orange"><a href="/category/@item.CategoryID/@Url.FriendlyUrl(item.Category.CategoryName)" title="">@item.Category.CategoryName</a></span>
+                                    <h4><a href="/blog/blogallread/@item.BlogID/@Url.FriendlyUrl(item.BlogTitle)" title="">@item.BlogTitle</a></h4>
+                                    <small><a href="/blog/blogallread/@item.BlogID/@Url.FriendlyUrl(item.BlogTitle)" title="">@(((DateTime)item.BlogCreateDate).ToString("dd-MMM-yyyy"))</a></small>
+                                </div><!-- end meta -->
+                            </div><!-- end shadow-desc -->
+                        </div><!-- end shadow -->
+                    </div><!-- end post-media -->
+                </div>
+
+                <!-- end second-side -->
+            }
+        </div><!-- end masonry -->
+    </div>
+</section>
