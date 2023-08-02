@@ -6,7 +6,7 @@
             <div class="tab">
             @foreach (var item in Model)
             {
-                 var categoryUrl = "/Category/" + item.CategoryID; // Uygun URL yapısını oluşturun
+                var categoryUrl = "/Category/" + item.CategoryID + "/"+@Url.FriendlyUrl(item.CategoryName); // Uygun URL yapısını oluşturun
 
                 <a href="@categoryUrl">
                 <button class="tablinks active" onclick="openCategory(event, @item.CategoryID)">@item.CategoryName</button>

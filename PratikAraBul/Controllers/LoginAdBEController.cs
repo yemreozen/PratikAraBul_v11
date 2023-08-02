@@ -47,5 +47,13 @@ namespace PratikAraBul.Controllers
 
        
         }
+        public async Task<IActionResult> Logout()
+        {
+            // Kullanıcıyı oturumdan çıkart
+            await HttpContext.SignOutAsync();
+
+            // Oturumu sonlandırdıktan sonra yönlendirilecek sayfayı belirle (örneğin Ana Sayfa'ya yönlendir)
+            return RedirectToAction("Index", "LoginAdBE");
+        }
     }
 }

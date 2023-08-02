@@ -80,7 +80,7 @@
                                     <div class="blog-meta big-meta col-md-8">
 
                                         <h4><a href=" /Blog/BlogAllRead/@item.BlogID/@Url.FriendlyUrl(@item.BlogTitle)" title="">@item.BlogTitle</a></h4>
-                                        <p>@item.BlogContent.Substring(0,item.BlogContent.Substring(0,130).LastIndexOf(" "))...</p>
+                                        <p>@Html.Raw(@item.BlogContent.Substring(0,item.BlogContent.Substring(0,130).LastIndexOf(" ")))...</p>
                                         <small class="firstsmall"><a class="bg-orange" href="/category/@item.CategoryID/@Url.FriendlyUrl(@item.Category.CategoryName)" title="">@item.Category.CategoryName</a></small>
                                         <small><a href="/blog/blogallread/@item.BlogID/@Url.FriendlyUrl(@item.BlogTitle)" title="">@(((DateTime)item.BlogCreateDate).ToString("dd-MMM-yyyy"))</a></small>
                                     </div><!-- end meta -->

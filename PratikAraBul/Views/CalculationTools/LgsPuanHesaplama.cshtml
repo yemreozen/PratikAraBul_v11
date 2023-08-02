@@ -1,0 +1,158 @@
+﻿@{
+    ViewData["Title"] = "LgsPuanHesaplama";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+<html lang="tr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pratik Ara Bul | Lgs Puan Hesaplama Aracı</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="~/css/lgspuanhesaplama.css" rel="stylesheet" />
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="/js/LgsPuanHesaplama.js" ></script>
+    
+</head>
+
+<body>
+    <div class="table-lgs">
+        <div class="col-sm-2" id="column">
+            <form name="lgshesapla" id="lgshesaplama" action="jquery_form_kontrolu_post" method="post" onsubmit="return false;">
+                <table class="styled-table">
+                    <thead>
+                        <tr>
+                            <th>Dersler</th>
+                            <th>Doğru</th>
+                            <th>Yanlış</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Türkçe (20 Soru) <div class="yirmisoru_uyari" style="color:red;"></div></td>
+                            <td><input type="number" name="tdogru" max="20" min="0" value="0" id="trk_yirmisoru" /></td>
+                            <td><input type="number" name="tyanlis" max="20" min="0" value="0" id="trk_yirmisoru_yanlis" /></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                T.C. İnkılap Tarihi ve Atatürkçülük (10 Soru)
+                                <div class="onsoru_uyari"></div>
+                            </td>
+                            <td><input type="number" name="sdogru" max="10" min="0" value="0" id="tc_onsoru" /></td>
+
+                            <td><input type="number" name="syanlis" max="10" min="0" value="0" id="tc_onsoru_yanlis" /></td>
+                        </tr>
+                        <tr>
+
+                            <td>
+                                Matematik (20 Soru)
+                                <div class="yirmisoru_uyari" style="color:red;"></div>
+                            </td>
+                            <td><input type="number" name="mdogru" max="20" min="0" value="0" id="mt_yirmisoru" /></td>
+
+                            <td><input type="number" name="myanlis" max="20" min="0" value="0" id="mt_yirmisoru_yanlis" /></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Fen Bilimleri (20 Soru)
+                                <div class="yirmisoru_uyari" style="color:red;"></div>
+                            </td>
+                            <td><input type="number" name="fdogru" max="20" min="0" value="0" id="fb_yirmisoru" /></td>
+
+                            <td><input type="number" name="fyanlis" max="20" min="0" value="0" id="fb_yirmisoru_yanlis" /></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Din Kültürü ve Ahlak Bilgisi(10 Soru)
+                                <div class="onsoru_uyari" style="color:red;"></div>
+                            </td>
+                            <td><input type="number" name="dindogru" max="10" min="0" value="0" id="dn_onsoru" /></td>
+
+                            <td><input type="number" name="dinyanlis" max="10" min="0" value="0" id="dn_onsoru_yanlis" /></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                İngilizce(10 Soru)
+                                <div class="onsoru_uyari" style="color:red;"></div>
+                            </td>
+                            <td><input type="number" name="ingdogru" max="10" min="0" value="0" id="i_onsoru" /></td>
+
+                            <td><input type="number" name="ingyanlis" max="10" min="0" value="0" id="i_onsoru_yanlis" /></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td></td>
+                            <td colspan="2"><input type="reset" value="Temizle" class="btn btn-danger" /></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td colspan="2"><input type="button" value="Hesapla" onclick="hesapla()" class="btn btn-primary" /></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </form>
+        </div>
+
+        <div class="col-sm-2" id="column">
+            <form name="lgssonuc">
+                <table class="styled-table">
+                    <thead>
+                        <tr>
+                            <th>Dersler</th>
+                            <th>Net</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Türkçe Net</td>
+                            <td><input type="text" name="tnet" disabled="disabled" /></td>
+                        </tr>
+                        <tr>
+                            <td>Sosyal Bilimler Net</td>
+                            <td><input type="text" name="snet" disabled="disabled" /></td>
+                        </tr>
+                        <tr>
+                            <td>Matematik Net</td>
+                            <td><input type="text" name="mnet" disabled="disabled" /></td>
+                        </tr>
+                        <tr>
+                            <td>Fen Bilimleri Net</td>
+                            <td><input type="text" name="fnet" disabled="disabled" /></td>
+                        </tr>
+                        <tr>
+                            <td>Din Net</td>
+                            <td><input type="text" name="dinnet" disabled="disabled" /></td>
+                        </tr>
+                        <tr>
+                            <td>İngilizce Net</td>
+
+                            <td><input type="text" name="ingnet" disabled="disabled" /></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td>Toplam Puan :</td>
+                            <td><input type="text" disabled="disabled" name="tpuan" /></td>
+                        </tr>
+                        <tr>
+                            <td>Toplam Net :</td>
+                            <td><input type="text" disabled="disabled" name="toplamnet" /></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
+

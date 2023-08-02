@@ -1,0 +1,23 @@
+﻿@model EntityLayer.Concrete.Category
+@{
+    ViewData["Title"] = "EditCategory";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+<h1>Blog Düzenle</h1>
+<form asp-action="editcategory" method="post" enctype="multipart/form-data">
+    @Html.HiddenFor(x => x.CategoryID)
+
+    <div class="form-group">
+        <label for="BlogTitle">Kategori Adı</label>
+        @Html.TextBoxFor(x => x.CategoryName, new { @class = "form-control", required = "required" })
+    </div>
+    <div class="form-group">
+        <label for="CategoryID">Kategori Açıklaması</label>
+        @Html.TextBoxFor(x => x.CategoryDesc, new { @class = "form-control", required = "required" })
+    </div>
+
+    <button id="submitButton" type="submit" class="btn btn-info">Kaydet</button>
+</form>
+
+
+

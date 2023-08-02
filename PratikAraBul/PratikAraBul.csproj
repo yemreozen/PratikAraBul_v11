@@ -28,8 +28,4 @@
     <Folder Include="Views\Shared\Components\CommentList\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Include="wwwroot\images\thumnail.jpg" />
-  </ItemGroup>
-
 </Project>

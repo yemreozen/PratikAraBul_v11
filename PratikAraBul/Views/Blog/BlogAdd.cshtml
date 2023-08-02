@@ -1,46 +1,97 @@
-﻿@model EntityLayer.Concrete.Blog
+﻿@model EntityLayer.Concrete.BlogImageAdd
 @{
     ViewData["Title"] = "BlogAdd";
     Layout = "~/Views/Shared/_WriterLayout.cshtml";
 }
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 
-<h1>Yeni Blog Ekleme</h1>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
-@using (Html.BeginForm("BlogAdd","Blog",FormMethod.Post))
-{
-    @Html.Label("Blog Başlığı")
-    @Html.TextBoxFor(x=>x.BlogTitle,new {@class="form-control",required = "required" })
-    <br/>
-    @Html.Label("Blog Mini Resim")
-    @Html.TextBoxFor(x=>x.ThumbnailImage,new {@class="form-control",required = "required" })
-    <br />
-     @Html.Label("Blog Ana Resim")
-    @Html.TextBoxFor(x=>x.Image,new {@class="form-control",required = "required" })
-    <br/>
-    @Html.Label("Blog Kategorisi")
-    @Html.DropDownListFor(x=>x.CategoryID,(List<SelectListItem>)ViewBag.cv,new {@class="form-control",required = "required" })
-    <br />
-    @Html.Label("Blog İçeriği")
-    <span id="error-message" style="color: red; display: none;">Minimum 300 karakter olmalıdır.</span>
-    @Html.TextAreaFor(x=>x.BlogContent,new {@class="form-control",id = "BlogContent" })
-    <br />
-    <button id="submitButton" disabled type="submit" class="btn btn-info">Ekle</button>
-}
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+</head>
 
-<script>
-    document.getElementById("BlogContent").addEventListener("input", function () {
-        var textarea = document.getElementById("BlogContent");
-        var minLength = 300;
-        var currentValue = textarea.value;
+<body>
+    <h1>Yeni Blog Ekleme</h1>
+   @* @using (Html.BeginForm("BlogAdd", "Blog", FormMethod.Post))
+    {
+        @Html.Label("Blog Başlığı")
+        @Html.TextBoxFor(x=>x.BlogTitle,new {@class="form-control",required = "required" })
+        <br />
+        @Html.Label("Blog Mini Resim")
+        @Html.TextBoxFor(x=>x.ThumbnailImage,new {@class="form-control",required = "required" })
+        <br />
+        @Html.Label("Blog Ana Resim")
+        @Html.TextBoxFor(x=>x.Image,new {@class="form-control",required = "required" })
+        <br />
+        @Html.Label("Blog Kategorisi")
+        @Html.DropDownListFor(x=>x.CategoryID,(List<SelectListItem>)ViewBag.cv,new {@class="form-control",required = "required" })
+        <br />
+        @Html.Label("Blog İçeriği")
+        @Html.TextAreaFor(x=>x.BlogContent,new {@class="form-control",id = "BlogContent" })
+        <br />
+        <span id="error-message" style="color: red; display: none;">Minimum 300 karakter olmalıdır.</span>
+        <button id="submitButton"  type="submit" class="btn btn-info">Ekle</button>
+    }*@
+    <form class="form-group" method="post" enctype="multipart/form-data">
+        <div>
+            <label>Blog Başlığı</label>
+            <input type="text" class="form-control" name="BlogTitle" required />
+        </div>
+        <div>
+            <label>Blog Mini Resim</label>
+            <input type="file" class="form-control" name="ThumbnailImage" required />
+        </div>
+        <div>
+            <label>Blog Ana Resim</label>
+            <input type="file" class="form-control" name="Image" required />
+        </div>
+        <div>
+            <label>Blog Kategorisi</label>
+            @Html.DropDownListFor(x=>x.CategoryID,(List<SelectListItem>)ViewBag.cv,new {@class="form-control",required = "required" })
 
-        if (currentValue.length < minLength) {
-            document.getElementById("error-message").style.display = "block";
-            document.getElementById("submitButton").disabled = true;
+        </div>
+        <div>
 
-        } else {
-            document.getElementById("error-message").style.display = "none";
-            document.getElementById("submitButton").disabled = false;
+            <label>Blog İçeriği</label>
+            <textarea type="text" id="summernote" class="form-control" name="BlogContent" required></textarea>
+        </div>
 
-        }
-    });
-</script>
+
+
+        <div>
+            <button class="btn btn-info ">Kaydet</button>
+        </div>
+
+    </form>
+
+  @*  <script>
+        document.getElementById("BlogContent").addEventListener("input", function () {
+            var textarea = document.getElementById("BlogContent");
+            var minLength = 300;
+            var currentValue = textarea.value;
+
+            if (currentValue.length < minLength) {
+                document.getElementById("error-message").style.display = "block";
+                document.getElementById("submitButton").disabled = true;
+
+            } else {
+                document.getElementById("error-message").style.display = "none";
+                document.getElementById("submitButton").disabled = false;
+
+            }
+        });
+    </script>*@
+    <script>
+        $('#summernote').summernote({
+            placeholder: 'Hello Bootstrap 4',
+            tabsize: 2,
+            height: 100
+        });
+    </script>
+</body>
+</html>

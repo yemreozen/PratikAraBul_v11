@@ -4,31 +4,55 @@
     Layout = "~/Views/Shared/_WriterLayout.cshtml";
 }
 
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+
 <h1>Blog Düzenle</h1>
-@using (Html.BeginForm("EditBlog", "Blog", FormMethod.Post))
-{
-    @Html.Label("Blog Başlığı")
-    @Html.TextBoxFor(x=>x.BlogTitle,new {@class="form-control",required = "required" })
-    <br />
-    @Html.Label("Blog Mini Resim")
-    @Html.TextBoxFor(x=>x.ThumbnailImage,new {@class="form-control",required = "required" })
-    <br />
-    @Html.Label("Blog Ana Resim")
-    @Html.TextBoxFor(x=>x.Image,new {@class="form-control",required = "required" })
-    <br />
-    @Html.Label("Blog Kategorisi")
-    @Html.DropDownListFor(x=>x.CategoryID,(List<SelectListItem>)ViewBag.cv,new{@class="form-control",required = "required" })
-    <br />
-    @Html.Label("Blog İçeriği")
-    <span id="error-message" style="color: red; display: none;">Minimum 300 karakter olmalıdır.</span>
-    @Html.TextAreaFor(x=>x.BlogContent,new {@class="form-control",id = "BlogContent" })
-    <br />
-    <button id="submitButton" disabled type="submit" class="btn btn-info">Kaydet</button>
-}
+<form asp-action="EditBlog" method="post" enctype="multipart/form-data">
+    @Html.HiddenFor(x => x.BlogID)
+    @Html.HiddenFor(x => x.BlogStatus)
+    @Html.HiddenFor(x => x.WriterID)
+    @Html.HiddenFor(x => x.BlogCreateDate)
+
+    <div class="form-group">
+        <label for="BlogTitle">Blog Başlığı</label>
+        @Html.TextBoxFor(x => x.BlogTitle, new { @class = "form-control", required = "required" })
+    </div>
+
+    <div class="form-group">
+        <label for="ThumbnailImage">Blog Mini Resim</label>
+        <input type="file" name="thumbnailImageFile" class="form-control" required="required" />
+    </div>
+
+    <div class="form-group">
+        <label for="Image">Blog Ana Resim</label>
+        <input type="file" name="imageFile" class="form-control" required="required" />
+    </div>
+
+    <div class="form-group">
+        <label for="CategoryID">Blog Kategorisi</label>
+        @Html.DropDownListFor(x => x.CategoryID, (List<SelectListItem>)ViewBag.cv, new { @class = "form-control", required = "required" })
+    </div>
+
+    <div class="form-group">
+        <label for="BlogContent">Blog İçeriği</label>
+        <span id="error-message" style="color: red; display: none;">Minimum 300 karakter olmalıdır.</span>
+        @Html.TextAreaFor(x => x.BlogContent, new { @class = "form-control", id = "BlogContent" })
+    </div>
+
+    <button id="submitButton" type="submit" class="btn btn-info">Kaydet</button>
+</form>
+
 
 @*Blog yazısının karakter sınırını ayarlamak için kullanılır.
 *@
-<script>
+@*<script>
     document.getElementById("BlogContent").addEventListener("input", function () {
         var textarea = document.getElementById("BlogContent");
         var minLength = 300;
@@ -44,5 +68,12 @@
 
         }
     });
-</script>
+</script>*@
 
+<script>
+    $('#BlogContent').summernote({
+        placeholder: 'Hello Bootstrap 4',
+        tabsize: 2,
+        height: 100
+    });
+</script>

@@ -10,6 +10,7 @@ namespace PratikAraBul.ViewComponents.BlogReadAll
         BlogManager bm = new BlogManager(new EfBlogRepository());
         public IViewComponentResult Invoke()
         {
+            
             var values = bm.GetFirst3Blog();
             return View(values);
         }

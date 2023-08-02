@@ -1,5 +1,5 @@
 ﻿@using EntityLayer.Concrete
-@model List<Blog>
+@model List<Category>
 @{
     ViewData["Title"] = "BlogListWithWriter";
     Layout = "~/Views/Shared/_WriterLayout.cshtml";
@@ -9,24 +9,19 @@
 <table class="table table-bordered">
     <tr>
         <th>#</th>
-        <th>Blog Kapak Resmi</th>
-        <th>Blog Ana Resmi</th>
-        <th>Blog Başlığı</th>
-        <th>Olşturma Tarihi</th>    
         <th>Kategori</th>
+        <th>Açıklama</th>
         <th>Durumu</th>
- 
+
     </tr>
     @foreach (var item in Model)
     {
         <tr>
-            <td>@item.BlogID</td>
-            <td><img class="mb-4 mw-100 w-100 rounded" style="height:150px;width:auto" src="@item.ThumbnailImage" /></td>
-            <td><img class="mb-4 mw-100 w-100 rounded" style="height:150px;width:auto" src="@item.Image" /></td>
-            <td>@item.BlogTitle</td>
-            <td>@item.BlogCreateDate</td>
-            <td>@item.Category.CategoryName</td>
-            @if (@item.BlogStatus==true)
+            <td>@item.CategoryID</td>
+            <td>@item.CategoryName</td>
+            <td>@item.CategoryDesc</td>
+            <td>@item.CategoryStatus</td>
+            @if (@item.CategoryStatus == true)
             {
                 <td>
                     Aktif
@@ -38,8 +33,8 @@
                     Pasif
                 </td>
             }
-            <td><a onclick="showConfirmationModal('@item.BlogID')" class="btn btn-danger" >Sil</a></td>
-            <td><a href="/blog/editblog/@item.BlogID" class="btn btn-warning">Düzenle</a></td>
+            <td><a onclick="showConfirmationModal('@item.CategoryID')" class="btn btn-danger">Sil</a></td>
+            <td><a href="/category/editcategory/@item.CategoryID" class="btn btn-warning">Düzenle</a></td>
         </tr>
     }
 
@@ -59,42 +54,24 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">İptal</button>
-                <button id="deleteBlogLink" type="button" class="btn btn-danger">Sil</button>
+                <button id="deleteCategoryLink" type="button" class="btn btn-danger">Sil</button>
             </div>
         </div>
     </div>
 </div>
+
+
+<td><a asp-action="categoryadd" asp-controller="category" class="btn btn-primary">Yeni Kategori Oluştur</a></td>
+
 <script>
-    function showConfirmationModal(blogId) {
+    function showConfirmationModal(categoryId) {
         // Silme onay kutusunu göster
         $('#confirmDeleteModal').modal('show');
 
         // Silme bağlantısına dinamik olarak blog ID'sini ekleyin
-        var deleteButton = document.getElementById("deleteBlogLink");
+        var deleteButton = document.getElementById("deleteCategoryLink");
         deleteButton.onclick = function () {
-            var deleteLink = "/blog/deleteblog/" + blogId;
-            window.location.href = deleteLink;
-        };
-
-        // Modal kapatma işlemini yeniden tanımla
-        var modalCloseButton = document.querySelector("#confirmDeleteModal .modal-footer button[data-dismiss='modal']");
-        modalCloseButton.onclick = function () {
-            $('#confirmDeleteModal').modal('hide');
-        };
-    }
-</script>
-
-<td><a asp-action="blogadd" asp-controller="blog" class="btn btn-primary">Yeni Blog Oluştur</a></td>
-
-<script>
-    function showConfirmationModal(blogId) {
-        // Silme onay kutusunu göster
-        $('#confirmDeleteModal').modal('show');
-
-        // Silme bağlantısına dinamik olarak blog ID'sini ekleyin
-        var deleteButton = document.getElementById("deleteBlogLink");
-        deleteButton.onclick = function () {
-            var deleteLink = "/blog/deleteblog/" + blogId;
+            var deleteLink = "/category/deletecategory/" + categoryId;
             window.location.href = deleteLink;
         };
 

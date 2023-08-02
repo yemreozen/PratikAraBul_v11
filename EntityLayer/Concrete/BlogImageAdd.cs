@@ -9,15 +9,16 @@ using System.Web.Mvc;
 
 namespace EntityLayer.Concrete
 {
-    public class Blog
+    public class BlogImageAdd
     {
+
         [Key]
         public int BlogID { get; set; }
         public string BlogTitle { get; set; }
         [AllowHtml]
         public string BlogContent { get; set; }
-        public string ThumbnailImage { get; set; }
-        public string Image { get; set; }
+        public IFormFile ThumbnailImage { get; set; }
+        public IFormFile Image { get; set; }
         public DateTime BlogCreateDate { get; set; }
         public bool BlogStatus { get; set; }
         public int CategoryID { get; set; }

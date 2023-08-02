@@ -70,7 +70,7 @@
                                 <ol class="breadcrumb hidden-xs-down">
                                     <li class="breadcrumb-item"><a href="/Blog/Index">Ana Sayfa</a></li>
                                     <li class="breadcrumb-item"><a href="#">Blog</a></li>
-                                    <li class="breadcrumb-item active">@item.BlogTitle</li>
+                                        <li class="breadcrumb-item active">@categoryName</li>
                                 </ol>
 
                                     <span class="color-orange"><a href="/category/@categoryID/@Url.FriendlyUrl(categoryName)" title="">@ViewBag.CategoryName</a></span>
@@ -95,7 +95,7 @@
                             </div><!-- end media -->
                             <div class="blog-content">
                                 <div class="pp">
-                                   <p>@item.BlogContent</p>
+                                   @Html.Raw(@item.BlogContent)
                                 </div><!-- end pp -->
                             </div><!-- end content -->
                             }

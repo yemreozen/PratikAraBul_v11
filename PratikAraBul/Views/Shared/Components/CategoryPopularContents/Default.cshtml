@@ -12,7 +12,7 @@
                 <a href="/Blog/BlogAllRead/@item.BlogID/@Url.FriendlyUrl(item.BlogTitle)" class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="w-100 justify-content-between">
                         <img src="@item.ThumbnailImage" alt="" class="img-fluid float-left">
-                        <h5 class="mb-1">@item.BlogContent.Substring(0,item.BlogContent.Substring(0,40).LastIndexOf(" "))...</h5>
+                        <h5 class="mb-1">@Html.Raw(@item.BlogContent.Substring(0,item.BlogContent.Substring(0,40).LastIndexOf(" ")))...</h5>
                         <small>@(((DateTime)item.BlogCreateDate).ToString("dd-MMM-yyyy"))</small>
                     </div>
                 </a>

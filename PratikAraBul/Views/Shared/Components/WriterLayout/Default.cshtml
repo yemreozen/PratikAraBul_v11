@@ -1,18 +1,17 @@
-﻿
-@{
-    string writerName = ViewBag.writerName;
-}
+﻿@model EntityLayer.Concrete.Writer
+
+
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
         <li class="nav-item nav-profile">
             <a href="#" class="nav-link">
                 <div class="nav-profile-image">
-                    <img src="~/webWriter/assets/images/faces/face1.jpg" alt="profile">
+                    <img src="~/images/db2f2e3e-15df-4f80-82e6-1b142b2fa2b6.png" alt="profile">
                     <span class="login-status online"></span>
                     <!--change to offline or busy as needed-->
                 </div>
                 <div class="nav-profile-text d-flex flex-column">
-                    <span class="font-weight-bold mb-2">@writerName</span>
+                    <span class="font-weight-bold mb-2">@Model.WriterName</span>
                     <span class="text-secondary text-small">Yazar</span>
                 </div>
                 <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
@@ -30,9 +29,9 @@
                 <i class="mdi mdi-contacts menu-icon"></i>
             </a>
         </li>
-       
+
         <li class="nav-item">
-            <a class="nav-link" target="_blank"  href="/blog/bloglistwithwriter">
+            <a class="nav-link" target="_blank" href="/blog/bloglistwithwriter">
                 <span class="menu-title">Bloglarım</span>
                 <i class="mdi mdi-charts menu-icon"></i>
             </a>
@@ -40,6 +39,18 @@
         <li class="nav-item">
             <a class="nav-link" href="/blog/blogadd">
                 <span class="menu-title">Yeni Blog</span>
+                <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/category/writercategorylist">
+                <span class="menu-title">Kategoriler</span>
+                <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/category/categoryadd">
+                <span class="menu-title">Yeni Kategori</span>
                 <i class="mdi mdi-format-list-bulleted menu-icon"></i>
             </a>
         </li>
@@ -55,7 +66,7 @@
                 <i class="mdi mdi-settings menu-icon"></i>
             </a>
         </li>
-       
-      
+
+
     </ul>
 </nav>
