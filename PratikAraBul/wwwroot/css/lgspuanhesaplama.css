@@ -1,22 +1,13 @@
-﻿body {
-    margin: 0;
-    padding: 0;
-}
-
-.table-lgs {
-    margin-top: 150px;
+﻿.table-lgs {
+    margin-top: 300px;
     display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-.col-sm-2 {
-    flex-grow: 1;
+    gap: 300px;
 }
 
 .styled-table {
     border-collapse: collapse;
     margin: 15px;
+    width:450px;
     font-size: 0.9em;
     font-family: Oswald;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
@@ -72,9 +63,14 @@
         width: 100%;
         margin-left: 4px;
     }
-
+    .styled-table {
+        border-collapse: collapse;
+        margin: 0px;
+        width: 100%;
+    }
     .table-lgs {
         flex-direction: column;
+        gap: 20px;
     }
 
     .col-sm-2 {

@@ -11,6 +11,7 @@ namespace PratikAraBul.Controllers
         {
             return View();
         }
+        [AllowAnonymous]
         [Route("hesaplamaaraclari/lgspuanhesaplama")]
         public IActionResult LgsPuanHesaplama()
         {
