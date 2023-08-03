@@ -4,6 +4,7 @@ using DataAccesLayer.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccesLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20230803120323_blog-caption")]
+    partial class blogcaption
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -86,28 +89,6 @@ namespace DataAccesLayer.Migrations
                     b.HasIndex("BlogID");
 
                     b.ToTable("BlogsTags");
-                });
-
-            modelBuilder.Entity("EntityLayer.Concrete.CalculationText", b =>
-                {
-                    b.Property<int>("CalculationTextID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CalculationTextID"));
-
-                    b.Property<string>("CalculationFristCaption")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CalculationLastCaption")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CalculationTitle")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("CalculationTextID");
-
-                    b.ToTable("CalculationTexts");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Category", b =>

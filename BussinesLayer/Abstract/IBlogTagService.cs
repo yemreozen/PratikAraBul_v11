@@ -13,6 +13,8 @@ namespace BussinesLayer.Abstract
         void BlogBlogTagDelete(BlogTags blog);
         void BlogBlogTagUpdate(BlogTags blog);
         List<BlogTags> GetAllBlogTag();
+        List<BlogTags> GetTagsWithBlog();
         List<BlogTags> GetBlogTagById(int id);
+        BlogTags GetTagsById(int id);
     }
 }

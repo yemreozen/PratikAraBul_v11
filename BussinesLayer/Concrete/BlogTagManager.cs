@@ -4,6 +4,7 @@ using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,27 +21,38 @@ namespace BussinesLayer.Concrete
 
         public void AddBlogTag(BlogTags blogtags)
         {
-            throw new NotImplementedException();
+            _blogTagsDal.Insert(blogtags);
+
         }
 
-        public void BlogBlogTagDelete(BlogTags blog)
+        public void BlogBlogTagDelete(BlogTags blogtags)
         {
-            throw new NotImplementedException();
+            _blogTagsDal.Delete(blogtags);
         }
 
-        public void BlogBlogTagUpdate(BlogTags blog)
+        public void BlogBlogTagUpdate(BlogTags blogtags)
         {
             throw new NotImplementedException();
         }
 
         public List<BlogTags> GetAllBlogTag()
         {
-            throw new NotImplementedException();
+            return _blogTagsDal.GetAll();
         }
 
         public List<BlogTags> GetBlogTagById(int id)
         {
             return _blogTagsDal.GetListAll(x=>x.BlogID==id);
+        }
+
+        public BlogTags GetTagsById(int id)
+        {
+            return _blogTagsDal.GetByID(id);
+        }
+
+        public List<BlogTags> GetTagsWithBlog()
+        {
+            return _blogTagsDal.GetTagsWithBlog();
         }
     }
 }

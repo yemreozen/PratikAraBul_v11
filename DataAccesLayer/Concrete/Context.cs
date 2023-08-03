@@ -23,6 +23,7 @@ namespace DataAccesLayer.Concrete
 
         public DbSet<Writer> Writers { get; set; }
         public DbSet<BlogTags> BlogsTags { get; set; }
+        public DbSet<CalculationText> CalculationTexts { get; set; }
 
     }
 }

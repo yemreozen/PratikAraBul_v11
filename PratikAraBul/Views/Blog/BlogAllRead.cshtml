@@ -76,7 +76,7 @@
                                     <span class="color-orange"><a href="/category/@categoryID/@Url.FriendlyUrl(categoryName)" title="">@ViewBag.CategoryName</a></span>
                               
                                 <h1>@item.BlogTitle</h1>
-
+                               
                                 <div class="blog-meta big-meta">
                                     <small><a href="tech-single.html" title="">@(((DateTime)item.BlogCreateDate).ToString("dd-MMM-yyyy"))</a></small>
                                 </div><!-- end meta -->
@@ -91,6 +91,12 @@
                             </div><!-- end title -->
                            
                             <div class="single-post-media">
+                                    <div class="blog-content">
+                                        <div class="pp">
+                                            @Html.Raw(@item.BlogCaption)
+                                        </div><!-- end pp -->
+                                    </div><!-- end content -->
+                              
                                 <img src="@item.ThumbnailImage" alt="" class="img-fluid">
                             </div><!-- end media -->
                             <div class="blog-content">

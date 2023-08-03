@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Identity;
 using DataAccesLayer.Concrete;
 using System.IO;
 using Microsoft.AspNetCore.Http;
+using X.PagedList;
 
 namespace PratikAraBul.Controllers
 {
@@ -25,9 +26,9 @@ namespace PratikAraBul.Controllers
 
 
         [AllowAnonymous]
-        public IActionResult Index()
+        public IActionResult Index(int page =1)
         {
-            var values = bm.GetBlogListWithCategory();
+            var values = bm.GetBlogListWithCategory().ToPagedList(page,2);
             return View(values);
         }
         [AllowAnonymous]
@@ -46,11 +47,11 @@ namespace PratikAraBul.Controllers
             return View(values);
         }
 
-        public IActionResult BlogListWithWriter()
+        public IActionResult BlogListWithWriter(int page =1)
         {
             var userMail = User.Identity.Name;
             var writerId = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
-            var values = bm.GetBlogListWithWriterId(writerId);
+            var values = bm.GetBlogListWithWriterId(writerId).ToPagedList(page,10);
             return View(values);
         }
 
@@ -101,6 +102,7 @@ namespace PratikAraBul.Controllers
             }
 
             bl.BlogTitle = b.BlogTitle;
+            bl.BlogCaption = b.BlogCaption;
             bl.BlogContent = b.BlogContent;
             bl.BlogStatus = true;
             bl.CategoryID = b.CategoryID;

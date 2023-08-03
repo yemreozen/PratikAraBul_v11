@@ -1,14 +1,14 @@
-﻿@{
+﻿@using EntityLayer.Concrete
+@model List<CalculationText>
+
+@{
     ViewData["Title"] = "LgsPuanHesaplama";
     Layout = "~/Views/Shared/UserLayout.cshtml";
 }
 
-
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/UserLayout.cshtml";
+    var calculationToolId = ViewBag.Id;
 }
-
 <html lang="tr">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -27,14 +27,19 @@
     <div class="blog-title-area text-center">
         <ol class="breadcrumb hidden-xs-down">
             <li class="breadcrumb-item"><a href="/Blog/Index">Ana Sayfa</a></li>
-            <li class="breadcrumb-item"><a href="#">Blog</a></li>
+            <li class="breadcrumb-item"><a asp-action="index" asp-controller="hesaplamaaraclari" >Hesaplama Araçları</a></li>
             <li class="breadcrumb-item active"></li>
         </ol>
 
-
-        <h1>LGS PUAN HESAPLAMA - @DateTime.Now.Year</h1>
-
-
+        @foreach (var item in Model)
+        {
+        <h1>@item.CalculationTitle</h1>
+        <div class="blog-content">
+            <div class="pp">
+               @Html.Raw(item.CalculationFristCaption)
+            </div><!-- end pp -->
+        </div><!-- end content -->
+        }
         <div class="post-sharing">
             <ul class="list-inline">
                 <li><a href="#" class="fb-button btn btn-primary"><i class="fa fa-facebook"></i> <span class="down-mobile"> Facebook</span></a></li>
@@ -43,6 +48,8 @@
             </ul>
         </div><!-- end post-sharing -->
     </div><!-- end title -->
+    @if (calculationToolId==1)
+    {
     <div class="table-lgs">
         <div class="col-sm-2" id="column">
             <form name="lgshesapla" id="lgshesaplama" action="jquery_form_kontrolu_post" method="post" onsubmit="return false;">
@@ -171,6 +178,17 @@
             </form>
         </div>
     </div>
+    }
+   
+    <div class="blog-content">
+        @foreach (var item in Model)
+        {
+        <div class="pp">
+            @Html.Raw(item.CalculationLastCaption)
+        </div><!-- end pp -->
+        }
+    </div><!-- end content -->
+
 </body>
 
 </html>

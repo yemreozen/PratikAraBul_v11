@@ -1,8 +1,5 @@
 ﻿@using EntityLayer.Concrete
-@using X.PagedList.Mvc.Core;
-@using X.PagedList;
-@using X.PagedList.Web.Common;
-@model IPagedList<EntityLayer.Concrete.Category>
+@model List<BlogTags>
 @{
     ViewData["Title"] = "BlogListWithWriter";
     Layout = "~/Views/Shared/_WriterLayout.cshtml";
@@ -12,45 +9,21 @@
 <table class="table table-bordered">
     <tr>
         <th>#</th>
-        <th>Kategori</th>
-        <th>Açıklama</th>
-        <th>Durumu</th>
+        <th>Tag</th>
+        <th>Blog Başlığı</th>
 
     </tr>
     @foreach (var item in Model)
     {
         <tr>
-            <td>@item.CategoryID</td>
-            <td>@item.CategoryName</td>
-            <td>@item.CategoryDesc</td>
-            <td>@item.CategoryStatus</td>
-            @if (@item.CategoryStatus == true)
-            {
-                <td>
-                    Aktif
-                </td>
-            }
-            else
-            {
-                <td>
-                    Pasif
-                </td>
-            }
-            <td><a onclick="showConfirmationModal('@item.CategoryID')" class="btn btn-danger">Sil</a></td>
-            <td><a href="/category/editcategory/@item.CategoryID" class="btn btn-warning">Düzenle</a></td>
+            <td>@item.TagID</td>
+            <td>@item.TagName</td>
+            <td>@item.Blog.BlogTitle</td>
+            <td><a onclick="showConfirmationModal('@item.TagID')" class="btn btn-danger">Sil</a></td>
         </tr>
     }
 
 </table>
-<ul class="pagination justify-content-start">
-    @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions
-    {
-    LiElementClasses = new List<string>
-    {
-    "page-link","pagedlist"
-    }
-    })
-</ul>
 <!-- Silme Onay Kutusu Modalı -->
 <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -66,24 +39,23 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">İptal</button>
-                <button id="deleteCategoryLink" type="button" class="btn btn-danger">Sil</button>
+                <button id="deleteBlogLink" type="button" class="btn btn-danger">Sil</button>
             </div>
         </div>
     </div>
 </div>
 
-
-<td><a asp-action="categoryadd" asp-controller="category" class="btn btn-primary">Yeni Kategori Oluştur</a></td>
+<td><a asp-action="tagadd" asp-controller="tag" class="btn btn-primary">Yeni Tag Oluştur</a></td>
 
 <script>
-    function showConfirmationModal(categoryId) {
+    function showConfirmationModal(tagId) {
         // Silme onay kutusunu göster
         $('#confirmDeleteModal').modal('show');
 
         // Silme bağlantısına dinamik olarak blog ID'sini ekleyin
-        var deleteButton = document.getElementById("deleteCategoryLink");
+        var deleteButton = document.getElementById("deleteBlogLink");
         deleteButton.onclick = function () {
-            var deleteLink = "/category/deletecategory/" + categoryId;
+            var deleteLink = "/tag/deletetag/" + tagId;
             window.location.href = deleteLink;
         };
 

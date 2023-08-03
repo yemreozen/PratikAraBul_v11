@@ -1,4 +1,11 @@
-﻿@{
+﻿@using EntityLayer.Concrete
+@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+@using X.PagedList.Web.Common;
+@model IPagedList<EntityLayer.Concrete.Blog>
+
+
+@{
     ViewData["Title"] = "ReadAllByCategory";
     Layout = "~/Views/Shared/UserLayout.cshtml";
 }
@@ -38,8 +45,6 @@
     <!-- Responsive styles for this template -->
     <link href="~/tech-blog/css/responsive.css" rel="stylesheet">
 
-    @using EntityLayer.Concrete
-    @model List<Blog>
     <!-- Colors for this template -->
     <link href="~/tech-blog/css/colors.css" rel="stylesheet">
 
@@ -131,7 +136,7 @@
                                                 </div><!-- end media -->
                                                 <div class="blog-meta big-meta">
                                                     <h4><a href="/Blog/BlogAllRead/@item.BlogID/@Url.FriendlyUrl(@item.BlogTitle)" title="">@item.BlogTitle</a></h4>
-                                                    <p>@item.BlogContent.Substring(0,item.BlogContent.Substring(0,80).LastIndexOf(" "))...</p>
+                                                    <p>@Html.Raw(@item.BlogContent.Substring(0,item.BlogContent.Substring(0,80).LastIndexOf(" ")))...</p>
                                                     <small><a href="tech-single.html" title="">@(((DateTime)item.BlogCreateDate).ToString("dd-MMM-yyyy"))</a></small>
                                                 </div><!-- end meta -->
                                             </div><!-- end blog-box -->
@@ -149,12 +154,13 @@
                             <div class="col-md-12">
                                 <nav aria-label="Page navigation">
                                     <ul class="pagination justify-content-start">
-                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">Next</a>
-                                        </li>
+                                        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions
+                                        {
+                                        LiElementClasses = new List<string>
+                                        {
+                                        "page-link","pagedlist"
+                                        }
+                                        })
                                     </ul>
                                 </nav>
                             </div><!-- end col -->

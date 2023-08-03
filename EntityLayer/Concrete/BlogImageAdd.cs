@@ -17,6 +17,7 @@ namespace EntityLayer.Concrete
         public string BlogTitle { get; set; }
         [AllowHtml]
         public string BlogContent { get; set; }
+        public string BlogCaption { get; set; }
         public IFormFile ThumbnailImage { get; set; }
         public IFormFile Image { get; set; }
         public DateTime BlogCreateDate { get; set; }

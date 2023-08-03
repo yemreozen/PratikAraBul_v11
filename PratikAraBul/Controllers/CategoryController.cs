@@ -3,6 +3,7 @@ using DataAccesLayer.EntityFramework;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using X.PagedList;
 
 namespace PratikAraBul.Controllers
 {
@@ -13,17 +14,17 @@ namespace PratikAraBul.Controllers
 
         [AllowAnonymous]
         [Route("category/{id}/{categoryname?}")]
-        public IActionResult Index(int id)
+        public IActionResult Index(int id,int page =1)
         {
             ViewBag.Id = id;
-            var values = bm.GetBlogListByCategoryId(id);
+            var values = bm.GetBlogListByCategoryId(id).ToPagedList(page,10);
             return View(values);
         }
         [AllowAnonymous]
         [Route("category/writercategorylist")]
-        public IActionResult WriterCategoryList()
+        public IActionResult WriterCategoryList(int page =1)
         {
-            var values=cm.GetAllCategories();
+            var values=cm.GetAllCategories().ToPagedList(page,10);
             return View(values);
         }
         [AllowAnonymous]

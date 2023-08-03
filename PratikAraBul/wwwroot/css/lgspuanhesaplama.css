@@ -1,5 +1,8 @@
-﻿.table-lgs {
-    margin-top: 300px;
+﻿.blog-title-area{
+    margin-top:120px;
+}
+.table-lgs {
+    margin-top: 10px;
     display: flex;
     gap: 300px;
 }

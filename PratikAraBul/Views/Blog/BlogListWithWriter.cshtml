@@ -1,5 +1,8 @@
 ﻿@using EntityLayer.Concrete
-@model List<Blog>
+@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+@using X.PagedList.Web.Common;
+@model IPagedList<EntityLayer.Concrete.Blog>
 @{
     ViewData["Title"] = "BlogListWithWriter";
     Layout = "~/Views/Shared/_WriterLayout.cshtml";
@@ -44,6 +47,15 @@
     }
 
 </table>
+<ul class="pagination justify-content-start">
+    @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions
+    {
+    LiElementClasses = new List<string>
+    {
+    "page-link","pagedlist"
+    }
+    })
+</ul>
 <!-- Silme Onay Kutusu Modalı -->
 <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">

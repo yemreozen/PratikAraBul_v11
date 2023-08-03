@@ -1,0 +1,32 @@
+﻿@model EntityLayer.Concrete.BlogTags
+@{
+    ViewData["Title"] = "BlogAdd";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+<html>
+<head>
+  
+</head>
+
+<body>
+    <h1>Yeni Tag Ekleme</h1>
+   
+    <form class="form-group" method="post" enctype="multipart/form-data">
+       <div>
+            <label>Tag</label>
+            <input type="text" class="form-control" name="TagName" required />
+        </div>
+        <div>
+            <label>Tag Blog Kategorisi</label>
+            @Html.DropDownListFor(x=>x.BlogID,(List<SelectListItem>)ViewBag.cv,new {@class="form-control",required = "required" })
+
+        </div>
+
+        <div>
+            <button class="btn btn-info ">Kaydet</button>
+        </div>
+
+    </form>
+
+</body>
+</html>

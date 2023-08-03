@@ -330,3 +330,16 @@ a:focus {
         display: block;
     }
 }
+.pagedlist {
+    border-radius: 50px;
+    border: 1px solid black;
+    color: black;
+    font-family: fantasy;
+    cursor: pointer;
+}
+
+    .pagedlist:hover {
+        background-color: mediumblue;
+        color: white;
+        transition: 0.5s;
+    }
