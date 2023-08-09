@@ -12,7 +12,9 @@ namespace DataAccesLayer.Concrete
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("server=DESKTOP-020AMNQ\\MSSQLSERVER01;database=PratikAraBulDb;integrated security=true;TrustServerCertificate=True;");
+            string connectionString = "Server=94.73.148.205;Database=u1352190_pratika;User=u1352190_prtk34;Password=EmreBengu030521;";
+            ServerVersion serverVersion = ServerVersion.AutoDetect(connectionString);
+            optionsBuilder.UseMySql(connectionString, serverVersion);
         }
 
         public DbSet<Blog> Blogs { get; set; }

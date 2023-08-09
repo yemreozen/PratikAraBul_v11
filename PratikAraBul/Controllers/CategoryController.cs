@@ -20,21 +20,19 @@ namespace PratikAraBul.Controllers
             var values = bm.GetBlogListByCategoryId(id).ToPagedList(page,10);
             return View(values);
         }
-        [AllowAnonymous]
+     
         [Route("category/writercategorylist")]
         public IActionResult WriterCategoryList(int page =1)
         {
             var values=cm.GetAllCategories().ToPagedList(page,10);
             return View(values);
         }
-        [AllowAnonymous]
         [Route("category/categoryadd")]
         [HttpGet]
         public IActionResult CategoryAdd()
         {
             return View();
         }
-        [AllowAnonymous]
         [Route("category/categoryadd")]
         [HttpPost]
         public IActionResult CategoryAdd(Category category)
@@ -43,7 +41,6 @@ namespace PratikAraBul.Controllers
             category.CategoryStatus = true;
             return RedirectToAction("WriterCategoryList", "category");
         }
-        [AllowAnonymous]
         [Route("category/editcategory/{id}")]
         [HttpGet]
         public IActionResult EditCategory(int id)
@@ -51,7 +48,6 @@ namespace PratikAraBul.Controllers
             var category=cm.GetCategoryById(id);
             return View(category);
         }
-        [AllowAnonymous]
         [Route("category/editcategory/{id}")]
         [HttpPost]
         public IActionResult EditCategory(Category category)

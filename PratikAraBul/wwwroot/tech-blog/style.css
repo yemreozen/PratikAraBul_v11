@@ -1674,3 +1674,48 @@ hr.invis3 {
     -o-border-radius: 50%;
     border-radius: 50%
 }
+
+
+.cookie-banner {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+}
+
+.cookie-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 15px;
+}
+
+.cookie-icon {
+    width: 40px;
+}
+
+.cookie-message {
+    margin-top: 10px;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.learn-more {
+    color: #99ccff;
+    text-decoration: none;
+    margin-top: 8px;
+}
+
+    .learn-more:hover {
+        color: #66a3ff;
+        text-decoration: underline;
+    }
+
+.accept-btn {
+    margin-top: 15px;
+}

@@ -1,54 +1,52 @@
-﻿ 
-@{
+﻿@{
     Layout = null;
 }
 
 <!DOCTYPE html>
 <html lang="tr">
- <head>
+<head>
 
-<!-- Basic -->
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<!-- Mobile Metas -->
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<!-- Site Metas -->
-<title>Pratik Ara Bul</title>
-<meta name="keywords" content="">
-<meta name="description" content="">
-<meta name="author" content="">
+    <!-- Site Metas -->
+    <title>Pratik Ara Bul</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-<!-- Site Icons -->
-<link rel="shortcut icon" href="~/tech-blog/images/favicon.ico" type="image/x-icon" />
-    <link rel="apple-touch-icon" href="~/tech-blog/images/apple-touch-icon.png">
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="~/tech-blog/images/logo.png" type="image/x-icon" />
 
-<!-- Design fonts -->
-<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <!-- Design fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
 
-<!-- Bootstrap core CSS -->
+    <!-- Bootstrap core CSS -->
     <link href="~/tech-blog/css/bootstrap.css" rel="stylesheet">
 
-<!-- FontAwesome Icons core CSS -->
+    <!-- FontAwesome Icons core CSS -->
     <link href="~/tech-blog/css/font-awesome.min.css" rel="stylesheet">
 
-<!-- Custom styles for this template -->
+    <!-- Custom styles for this template -->
     <link href="~/tech-blog/style.css" rel="stylesheet">
 
-<!-- Responsive styles for this template -->
+    <!-- Responsive styles for this template -->
     <link href="~/tech-blog/css/responsive.css" rel="stylesheet">
 
-<!-- Colors for this template -->
+    <!-- Colors for this template -->
     <link href="~/tech-blog/css/colors.css" rel="stylesheet">
-
-<!-- Version Tech CSS for this template -->
+ 
+    <!-- Version Tech CSS for this template -->
     <link href="~/tech-blog/css/version/tech.css" rel="stylesheet">
 
-<!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
 <body>
 
@@ -69,7 +67,7 @@
                                 <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Blog</a>
                                 <ul class="dropdown-menu megamenu" aria-labelledby="dropdown01">
                                     <li>
-                                       @await Component.InvokeAsync("MenuBlogCategories")
+                                        @await Component.InvokeAsync("MenuBlogCategories")
                                     </li>
                                 </ul>
                             </li>
@@ -77,43 +75,52 @@
                                 <a class="nav-link" asp-action="index" asp-controller="calculationtools">Hesaplama Araçları</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="tech-category-01.html">Kalan Gün Sayaçları</a>
+                                <a class="nav-link" asp-action="index" asp-controller="daycounter">Kalan Gün Sayaçları</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" asp-action="index" asp-controller="contact">İletişim</a>
                             </li>
-                           @* <li class="nav-item">
-                                <a class="nav-link" href="tech-category-02.html">Videos</a>
+                            @* <li class="nav-item">
+                            <a class="nav-link" href="tech-category-02.html">Videos</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="tech-category-03.html">Reviews</a>
+                            <a class="nav-link" href="tech-category-03.html">Reviews</a>
                             </li>*@
-                            
+
                         </ul>
-                        <ul class="navbar-nav mr-2">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="fa fa-rss"></i></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="fa fa-android"></i></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="fa fa-apple"></i></a>
-                            </li>
-                        </ul>
+                     
                     </div>
                 </nav>
             </div><!-- end container-fluid -->
         </header><!-- end market-header -->
         @RenderBody()
+     
         <div class="dmtop">Scroll to Top</div>
+        <div class="cookie-banner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="d-flex justify-content-between align-items-center p-3">
+                            <div class="d-flex flex-row align-items-center">
+                                <img src="https://i.imgur.com/Tl8ZBUe.png" width="40" alt="Çerez Bildirimi">
+                                <div class="ml-2 mr-2">
+                                    <span>Sizlere daha iyi içerikler sunabilmemiz için çerezleri kullanıyoruz.<br></span>
+                                    <a asp-action="cookiepolicy" asp-controller="contact" class="learn-more">Daha fazlasını öğren<i class="fa fa-angle-right ml-2"></i></a>
+                                </div>
+                            </div>
+                            <div><button class="btn btn-dark" id="acceptBtn" type="button">Kabul et</button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <footer class="footer">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-7">
                         <div class="widget">
                             <div class="footer-text text-left">
-                                <a href="index.html"><img src="images/version/tech-footer-logo.png" alt="" class="img-fluid"></a>
+                                <a asp-action="index" asp-controller="blog"><img src="~/tech-blog/images/version/tech-footer-log.png" alt="" class="img-fluid"></a>
                                 <p>Pratik Ara Bul. Hayatı kolaylaştırmanın dönüm noktası.</p>
                                 <div class="social">
                                     <a href="#" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i class="fa fa-facebook"></i></a>
@@ -125,28 +132,19 @@
 
                                 <hr class="invis">
 
-                                <div class="newsletter-widget text-left">
-                                    <form class="form-inline">
-                                        <input type="text" class="form-control" placeholder="Enter your email address">
-                                        <button type="submit" class="btn btn-primary">SUBMIT</button>
-                                    </form>
-                                </div><!-- end newsletter -->
                             </div><!-- end footer-text -->
                         </div><!-- end widget -->
                     </div><!-- end col -->
-                    
                     @await Component.InvokeAsync("CategoryListByFooter")
-                  
+
                     <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
                         <div class="widget">
-                            <h2 class="widget-title">Copyrights</h2>
+                            <h2 class="widget-title">Bize Ulaşın</h2>
                             <div class="link-widget">
                                 <ul>
-                                    <li><a href="#">About us</a></li>
-                                    <li><a href="#">Advertising</a></li>
-                                    <li><a href="#">Write for us</a></li>
-                                    <li><a href="#">Trademark</a></li>
-                                    <li><a href="#">License & Help</a></li>
+                                    <li><a asp-action="index" asp-controller="contact">İletişim</a></li>
+                                    <li><a asp-action="privacypolicy" asp-controller="contact">Gizlilik Politikası</a></li>
+                                    <li><a asp-action="cookiepolicy" asp-controller="contact">Çerez Politikası</a></li>
                                 </ul>
                             </div><!-- end link-widget -->
                         </div><!-- end widget -->
@@ -169,6 +167,26 @@
     <script src="~/tech-blog/js/tether.min.js"></script>
     <script src="~/tech-blog/js/bootstrap.min.js"></script>
     <script src="~/tech-blog/js/custom.js"></script>
+    <script>
+        function showCookieBanner() {
+            const cookieBanner = document.querySelector('.cookie-banner');
+            const isAccepted = localStorage.getItem('cookieAccepted');
 
+            if (!isAccepted) {
+                cookieBanner.style.display = 'block';
+            }
+        }
+
+        function hideCookieBanner() {
+            const cookieBanner = document.querySelector('.cookie-banner');
+            cookieBanner.style.display = 'none';
+            localStorage.setItem('cookieAccepted', 'true');
+        }
+
+        const acceptButton = document.getElementById('acceptBtn');
+        acceptButton.addEventListener('click', hideCookieBanner);
+
+        document.addEventListener('DOMContentLoaded', showCookieBanner);
+    </script>
 </body>
 </html>

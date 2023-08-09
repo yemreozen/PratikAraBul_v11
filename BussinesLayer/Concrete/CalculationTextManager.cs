@@ -38,11 +38,14 @@ namespace BussinesLayer.Concrete
             return _calculationTextDal.GetAll();
         }
 
-        public List<CalculationText> GetCalculationTextById(int id)
+        public CalculationText GetCalculationTextById(int id)
         {
-            return _calculationTextDal.GetListAll(x =>x.CalculationTextID==id); ;
+            return _calculationTextDal.GetByID(id);
         }
 
-      
+        public List<CalculationText> GetCalculationTextByTextId(int id)
+        {
+            return _calculationTextDal.GetListAll(x => x.CalculationTextID == id);
+        }
     }
 }

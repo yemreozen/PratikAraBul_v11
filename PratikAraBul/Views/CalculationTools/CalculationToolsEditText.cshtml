@@ -1,0 +1,54 @@
+﻿@model EntityLayer.Concrete.CalculationText
+@{
+    ViewData["Title"] = "CalculationToolsEditText";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+</head>
+
+<body>
+<h1>Hesaplama Aracı İçerik Düzenle</h1>
+    <form asp-action="CalculationToolsEditText" method="post" enctype="multipart/form-data">
+    @Html.HiddenFor(x => x.CalculationTextID)
+
+    <div class="form-group">
+            <label for="CalculationTitle">İçerik Başlığı</label>
+        @Html.TextBoxFor(x => x.CalculationTitle, new { @class = "form-control", required = "required" })
+    </div>
+    <div class="form-group">
+            <label for="CalculationFristCaption">İçerik başlık altı yazısı</label>
+            @Html.TextAreaFor(x => x.CalculationFristCaption, new { @class = "form-control", required = "required",id = "BlogContent" })
+    </div>
+    <div class="form-group">
+            <label for="CalculationLastCaption">İçerik sayfa sonu yazısı</label>
+            @Html.TextAreaFor(x => x.CalculationLastCaption, new { @class = "form-control", required = "required",id = "BlogContent2" })
+    </div>
+
+    <button id="submitButton" type="submit" class="btn btn-info">Kaydet</button>
+</form>
+
+<script>
+    $('#BlogContent').summernote({
+        placeholder: 'İçeriğinizi yazınız',
+        tabsize: 2,
+        height: 100
+    });
+</script>
+<script>
+    $('#BlogContent2').summernote({
+        placeholder: 'İçeriğinizi yazınız',
+        tabsize: 2,
+        height: 100
+    });
+</script>
+</body>
+</html>

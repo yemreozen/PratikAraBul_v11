@@ -13,7 +13,8 @@ namespace BussinesLayer.Abstract
         void CalculationTextDelete(CalculationText calculationText);
         void CalculationTextUpdate(CalculationText calculationText);
         List<CalculationText> GetAllCalculationText();
-        List<CalculationText> GetCalculationTextById(int id);
+        CalculationText GetCalculationTextById(int id);
+        List<CalculationText> GetCalculationTextByTextId(int id);
       
     }
 }
