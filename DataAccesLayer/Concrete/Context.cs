@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,9 +13,17 @@ namespace DataAccesLayer.Concrete
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string connectionString = "Server=94.73.148.205;Database=u1352190_pratika;User=u1352190_prtk34;Password=EmreBengu030521;";
+            #region Debug Mode
+            //string connectionString = "Server=94.73.148.205;Database=u1352190_pratika;User=u1352190_prtk34;Password=EmreBengu030521;";
+            //ServerVersion serverVersion = ServerVersion.AutoDetect(connectionString);
+            //optionsBuilder.UseMySql(connectionString, serverVersion);
+            #endregion
+
+            #region Publish Mode
+            string connectionString = "  Server = localhost; Database = u1352190_pratika; Uid = u1352190_prtk34; Pwd = EmreBengu030521;";
             ServerVersion serverVersion = ServerVersion.AutoDetect(connectionString);
             optionsBuilder.UseMySql(connectionString, serverVersion);
+            #endregion
         }
 
         public DbSet<Blog> Blogs { get; set; }

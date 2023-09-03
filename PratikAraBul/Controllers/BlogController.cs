@@ -14,6 +14,7 @@ using DataAccesLayer.Concrete;
 using System.IO;
 using Microsoft.AspNetCore.Http;
 using X.PagedList;
+using Microsoft.AspNetCore.Hosting;
 
 namespace PratikAraBul.Controllers
 {
@@ -24,6 +25,12 @@ namespace PratikAraBul.Controllers
         CategoryManager cm = new CategoryManager(new EfCategoryRepository());
         Context c = new Context();
 
+        private readonly IWebHostEnvironment _hostEnviroment;
+
+        public BlogController(IWebHostEnvironment hostEnviroment)
+        {
+            _hostEnviroment = hostEnviroment;
+        }
 
         [AllowAnonymous]
         public IActionResult Index(int page =1)
@@ -56,7 +63,7 @@ namespace PratikAraBul.Controllers
         }
 
         [HttpGet]
-   
+        [Route("blog/blogadd")]
         public IActionResult BlogAdd()
         {
             List<SelectListItem> categoryValues = (from x in cm.GetAllCategories()
@@ -70,18 +77,19 @@ namespace PratikAraBul.Controllers
         }
       
         [HttpPost]
-       
+        [Route("blog/blogadd")]
         public IActionResult BlogAdd(BlogImageAdd b)
         {
             var userMail = User.Identity.Name;
             var writerId = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
             Blog bl = new Blog();
 
+            string wwwRootPath = _hostEnviroment.WebRootPath;
             if (b.ThumbnailImage != null)
             {
                 var extension = Path.GetExtension(b.ThumbnailImage.FileName);
                 var newimagename = Guid.NewGuid() + extension;
-                var location = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/", newimagename);
+                var location = Path.Combine(Directory.GetCurrentDirectory(), wwwRootPath +"/images/", newimagename);
                 using (var stream = new FileStream(location, FileMode.Create))
                 {
                     b.ThumbnailImage.CopyTo(stream);
@@ -93,12 +101,12 @@ namespace PratikAraBul.Controllers
             {
                 var extension = Path.GetExtension(b.Image.FileName);
                 var newimagename = Guid.NewGuid() + extension;
-                var location = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/", newimagename);
+                var location = Path.Combine(Directory.GetCurrentDirectory(), wwwRootPath + "/images/", newimagename);
                 using (var stream = new FileStream(location, FileMode.Create))
                 {
                     b.Image.CopyTo(stream);
                 }
-                bl.Image = "/images/"+ newimagename; // Save the image file name to the model property
+                bl.Image = "/images/" + newimagename; // Save the image file name to the model property
             }
 
             bl.BlogTitle = b.BlogTitle;
@@ -112,6 +120,7 @@ namespace PratikAraBul.Controllers
 
             return RedirectToAction("bloglistwithwriter", "blog");
         }
+        [Route("blog/deleteblog/{id}")]
         public IActionResult DeleteBlog(int id)
         {
             var blogValue = bm.GetBlogById(id);
@@ -119,6 +128,7 @@ namespace PratikAraBul.Controllers
             return RedirectToAction("bloglistwithwriter", "blog");
         }
         [HttpGet]
+        [Route("blog/editblog/{id}")]
         public IActionResult EditBlog(int id)
         {
 
@@ -134,13 +144,16 @@ namespace PratikAraBul.Controllers
         }
        
         [HttpPost]
+        [Route("blog/editblog/{id}")]
         public IActionResult EditBlog(Blog b, IFormFile thumbnailImageFile, IFormFile imageFile)
         {
             if (thumbnailImageFile != null)
             {
                 var extension = Path.GetExtension(thumbnailImageFile.FileName);
                 var newImageName = Guid.NewGuid() + extension;
-                var location = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/", newImageName);
+                string wwwRootPath = _hostEnviroment.WebRootPath;
+
+                var location = Path.Combine(Directory.GetCurrentDirectory(), wwwRootPath + "/images/", newImageName);
                 using (var stream = new FileStream(location, FileMode.Create))
                 {
                     thumbnailImageFile.CopyTo(stream);
@@ -152,7 +165,8 @@ namespace PratikAraBul.Controllers
             {
                 var extension = Path.GetExtension(imageFile.FileName);
                 var newImageName = Guid.NewGuid() + extension;
-                var location = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/", newImageName);
+                string wwwRootPath = _hostEnviroment.WebRootPath;
+                var location = Path.Combine(Directory.GetCurrentDirectory(), wwwRootPath + "/images/", newImageName);
                 using (var stream = new FileStream(location, FileMode.Create))
                 {
                     imageFile.CopyTo(stream);

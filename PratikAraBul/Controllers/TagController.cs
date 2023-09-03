@@ -37,7 +37,7 @@ namespace PratikAraBul.Controllers
             bmt.AddBlogTag(blogTags);
             return RedirectToAction("index", "Tag");
         }
-        public IActionResult DeleteBlog(int id)
+        public IActionResult DeleteTag(int id)
         {
             var tagValue = bmt.GetTagsById(id);
             bmt.BlogBlogTagDelete(tagValue);
